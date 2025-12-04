@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Педагогически състав</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+            <h1 class="section-title">Педагогически състав</h1>
+            <div class="news-grid">
+                <article class="news-card" th:each="teacher : ${teachers}">
+                    <div style="padding: 15px;">
+                        <h3 class="news-title" th:text="${teacher.name}">Name</h3>
+                        <p><strong>Предмет:</strong> <span th:text="${teacher.subject}">Subject</span></p>
+                        <p th:text="${teacher.bio}">Bio</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Моят Профил</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">Моят Профил</h1>
+
+                <div th:if="${successMessage}" class="alert alert-success"
+                    style="background-color: #d4edda; color: #155724; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;">
+                    <span th:text="${successMessage}"></span>
+                </div>
+                <div th:if="${errorMessage}" class="alert alert-danger"
+                    style="background-color: #f8d7da; color: #721c24; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+
+                <div class="form-container"
+                    style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow);">
+                    <form th:action="@{/profile/update}" method="post">
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="username"
+                                style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Потребителско
+                                име</label>
+                            <input type="text" id="username" class="form-control" th:value="${user.username}" disabled
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; background-color: #f8f9fa;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="fullName" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Име и
+                                Фамилия</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control"
+                                th:value="${user.fullName}" required
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Нова
+                                Парола (оставете празно, ако не променяте)</label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px;">
+                        </div>
+
+                        <div class="form-actions" style="display: flex; gap: 1rem;">
+                            <button type="submit" class="button"
+                                style="background-color: var(--primary-color); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;">
+                                Запази промените
+                            </button>
+                            <a th:href="@{/admin/dashboard}" class="button"
+                                style="background-color: var(--bg-light); color: var(--text-dark); padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; border: 1px solid var(--border-color);">
+                                Назад
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

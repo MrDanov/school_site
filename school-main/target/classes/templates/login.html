@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Вход</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container" style="padding-top: 120px; padding-bottom: 60px; max-width: 400px;">
+            <h1 class="section-title">Вход</h1>
+            <form th:action="@{/login}" method="post" class="login-form">
+                <div style="margin-bottom: 15px;">
+                    <label for="username">Потребителско име</label>
+                    <input type="text" id="username" name="username" required
+                        style="width: 100%; padding: 10px; margin-top: 5px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="password">Парола</label>
+                    <input type="password" id="password" name="password" required
+                        style="width: 100%; padding: 10px; margin-top: 5px;">
+                </div>
+                <div th:if="${param.error}" style="color: red; margin-bottom: 15px;">
+                    Грешно потребителско име или парола.
+                </div>
+                <div th:if="${param.logout}" style="color: green; margin-bottom: 15px;">
+                    Успешно излизане.
+                </div>
+                <button type="submit" class="btn"
+                    style="width: 100%; padding: 10px; background-color: var(--primary-color); color: white; border: none; cursor: pointer;">Вход</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

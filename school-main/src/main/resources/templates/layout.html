@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bg" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title layout:title-pattern="29. СУ &quot;Кузман Шапкарев&quot; - $CONTENT_TITLE">29. СУ "Кузман Шапкарев"</title>
+
+    <!-- Favicon links pointing to /images/favicon/ directory -->
+    <link rel="shortcut icon" th:href="@{/images/favicon/favicon.ico}" type="image/x-icon">
+    <link rel="icon" th:href="@{/images/favicon/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/images/favicon/site.webmanifest}">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a th:href="@{/}" class="logo">
+                    <img th:src="@{/images/school_logo.png}" alt="29. СУ Кузман Шапкарев" class="logo-img">
+                    <div class="logo-text">
+                        <span class="logo-line1">29. СУ</span>
+                        <span class="logo-line2">"Кузман Шапкарев"</span>
+                    </div>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">За нас <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/about}">Завет</a></li>
+                            <li><a th:href="@{/teachers}">Педагогически състав</a></li>
+                            <li><a href="#">Материално-техническа база</a></li>
+                            <li><a href="#">Обществен съвет</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a th:href="@{/news}" class="nav-link">Новини</a></li>
+                    <li class="nav-item"><a th:href="@{/events}" class="nav-link">Събития</a></li>
+                    <li class="nav-item"><a th:href="@{/classes}" class="nav-link">Прием</a></li>
+
+
+                    <li class="nav-item"><a th:href="@{/contact}" class="nav-link">Контакти</a></li>
+                    <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a th:href="@{/admin/dashboard}" class="nav-link" style="color: #e74c3c;">Админ</a>
+                    </li>
+                    <li class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}">
+                        <a th:href="@{/login}" class="nav-link">Вход</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Fragment -->
+    <div layout:fragment="content"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a th:href="@{/}">
+                        <img th:src="@{/images/school_logo.png}" alt="29. СУ Кузман Шапкарев" class="footer-logo-img">
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>За нас</h4>
+                        <ul>
+                            <li><a th:href="@{/about}">Завет</a></li>
+                            <li><a th:href="@{/teachers}">Педагогически състав</a></li>
+                            <li><a href="#">Материално-техническа база</a></li>
+                            <li><a href="#">Обществен съвет</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Информация</h4>
+                        <ul>
+                            <li><a th:href="@{/news}">Новини</a></li>
+                            <li><a th:href="@{/classes}">Прием на ученици</a></li>
+                            <li><a href="#">Проекти</a></li>
+                            <li><a href="#">Документи</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Контакти</h4>
+                        <ul>
+                            <li><a th:href="@{/contact}">Контакти</a></li>
+                            <li><a href="https://www.youtube.com/@29.%D0%A1%D0%A3" target="_blank"
+                                    rel="noopener noreferrer">YouTube</a></li>
+                            <li><a href="https://www.facebook.com/people/29-%D0%A1%D0%A3-%D0%9A%D1%83%D0%B7%D0%BC%D0%B0%D0%BD-%D0%A8%D0%B0%D0%BF%D0%BA%D0%B0%D1%80%D0%B5%D0%B2/100062950554204/"
+                                    target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 29. СУ "Кузман Шапкарев". Всички права запазени.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

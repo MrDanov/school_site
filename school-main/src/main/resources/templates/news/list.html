@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Новини</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+            <h1 class="section-title">Всички Новини</h1>
+            <div class="news-grid">
+                <a th:each="newsItem : ${newsList}" th:href="@{/news/{id}(id=${newsItem.id})}" class="news-card-link">
+                    <article class="news-card"
+                        th:style="${newsItem.imageUrl != null} ? 'background-image: url(' + ${newsItem.imageUrl} + '); background-size: cover; background-position: center;' : ''">
+                        <div class="news-overlay"
+                            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 1;">
+                        </div>
+                        <div class="news-date" th:text="${#temporals.format(newsItem.date, 'dd.MM.yyyy')}"
+                            style="position: relative; z-index: 2; color: white;">Date</div>
+                        <h3 class="news-title" th:text="${newsItem.title}"
+                            style="position: relative; z-index: 2; color: white;">Title</h3>
+                    </article>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

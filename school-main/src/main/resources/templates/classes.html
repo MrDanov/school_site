@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Прием</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+            <h1 class="section-title">Прием на ученици</h1>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="background-color: var(--primary-color); color: white;">
+                        <th style="padding: 10px; text-align: left;">Клас</th>
+                        <th style="padding: 10px; text-align: left;">Профил</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="classInfo : ${classes}" style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;" th:text="${classInfo.name}">Name</td>
+                        <td style="padding: 10px;" th:text="${classInfo.profile}">Profile</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

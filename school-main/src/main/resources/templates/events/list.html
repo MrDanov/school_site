@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Събития</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+            <h1 class="section-title">Предстоящи Събития</h1>
+            <div class="projects-grid">
+                <article class="project-card" th:each="event : ${events}">
+                    <div class="project-date" th:text="${#temporals.format(event.eventDate, 'dd.MM.yyyy HH:mm')}">Date
+                    </div>
+                    <h3 class="project-title" th:text="${event.title}">Title</h3>
+                    <p th:text="${event.description}">Description</p>
+                    <p th:if="${event.location}"><strong>Място:</strong> <span
+                            th:text="${event.location}">Location</span></p>
+                </article>
+            </div>
+            <div th:if="${#lists.isEmpty(events)}">
+                <p>Няма предстоящи събития.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

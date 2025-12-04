@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Начало</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">29. СУ "Кузман Шапкарев"</h1>
+                <p class="hero-subtitle">Училище, което сбъдва мечти</p>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="container">
+                <h2 class="section-title">Новини</h2>
+                <div class="news-grid">
+                    <a th:each="newsItem : ${newsList}" th:href="@{/news/{id}(id=${newsItem.id})}"
+                        class="news-card-link">
+                        <article class="news-card" th:classappend="${newsItemStat.index == 0} ? 'featured' : ''"
+                            th:style="${newsItem.imageUrl != null} ? 'background-image: url(' + ${newsItem.imageUrl} + '); background-size: cover; background-position: center;' : ''">
+                            <div class="news-overlay"></div>
+                            <div class="news-date" th:text="${#temporals.format(newsItem.date, 'dd.MM.yyyy')}">Date
+                            </div>
+                            <h3 class="news-title" th:text="${newsItem.title}">Title</h3>
+                            <div class="news-spacer" th:if="${newsItemStat.index == 0}"></div>
+                            <p class="news-excerpt" th:if="${newsItemStat.index == 0}"
+                                th:text="${#strings.abbreviate(newsItem.content, 100)}">Excerpt</p>
+                        </article>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a th:href="@{/news}" class="btn"
+                        style="display: inline-block; padding: 10px 20px; background-color: var(--primary-color); color: white; text-decoration: none; border-radius: 5px;">Виж
+                        всички новини</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section (Replacing Projects for dynamic content) -->
+        <section class="projects-section">
+            <div class="container">
+                <h2 class="section-title">Предстоящи Събития</h2>
+                <div class="projects-grid">
+                    <a th:each="event : ${events}" th:href="@{/events}" class="project-card-link">
+                        <article class="project-card">
+                            <div class="project-date"
+                                th:text="${#temporals.format(event.eventDate, 'dd.MM.yyyy HH:mm')}">Date</div>
+                            <h3 class="project-title" th:text="${event.title}">Title</h3>
+                        </article>
+                    </a>
+                    <div th:if="${#lists.isEmpty(events)}">
+                        <p>Няма предстоящи събития.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Links Section -->
+        <section class="important-section">
+            <div class="container">
+                <div class="important-layout">
+                    <div class="logo-buttons">
+                        <a href="https://www.mon.bg/dyasno-menyu/vakantsii/" target="_blank" rel="noopener noreferrer"
+                            class="logo-button" data-tooltip="Графици">
+                            <img th:src="@{/images/calendar.png}" alt="Календар" class="logo-button-img">
+                        </a>
+                        <a href="https://neispuo.mon.bg/" target="_blank" rel="noopener noreferrer" class="logo-button"
+                            data-tooltip="НЕИСПУО">
+                            <img th:src="@{/images/neispuo_logo.png}" alt="НЕИСПУО" class="logo-button-img">
+                        </a>
+                        <a href="https://edu.mon.bg/" target="_blank" rel="noopener noreferrer" class="logo-button"
+                            data-tooltip="Дигитална раница">
+                            <img th:src="@{/images/digital_backpack_logo.png}" alt="Дигитален раница"
+                                class="logo-button-img">
+                        </a>
+                    </div>
+
+                    <aside class="important-sidebar">
+                        <div class="sidebar-header">
+                            <h3 class="sidebar-title">Важно</h3>
+                        </div>
+                        <div class="sidebar-content">
+                            <div class="important-links">
+                                <a href="#" class="important-link">Бюджет</a>
+                                <a href="#" class="important-link">Обществен съвет</a>
+                                <a href="#" class="important-link">Сигнали</a>
+                                <a href="#" class="important-link">Услуги</a>
+                                <a href="#" class="important-link">Достъп до обществена информация</a>
+                                <a href="#" class="important-link">Защита на личните данни</a>
+                                <a href="#" class="important-link">Профил на купувача</a>
+                                <a href="#" class="important-link">Архив на нормативни документи</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
